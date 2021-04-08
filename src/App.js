@@ -1,24 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Footer from "./components/UI/Footer";
+import Header from "./components/UI/Header";
+import { Container } from "react-bootstrap";
+import {BrowserRouter as Router, Route} from "react-router-dom";
+import Products from "./components/Products/Products";
+import ProductDetail from "./components/Products/ProductDetail";
+import Cart from "./components/Cart/Cart";
 
-function App() {
+const App=()=> {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <Header/>
+        <main className='py-3'>
+            <Container>
+                <Route path="/" exact component={Products} />
+                <Route path="/productDetail/:id" excat component={ProductDetail}/>
+                <Route path="/cart/:id?" excat component={Cart}/>
+            </Container>
+        </main>
+        <Footer/>
+      </Router>
   );
 }
 
