@@ -3,11 +3,12 @@ import {useDispatch, useSelector} from "react-redux";
 import {AddToCartAction, RemoveFromCartAction} from "../../redux/actions/CartAction";
 import {Button, Card, Col, Form, Image, ListGroup, Row} from "react-bootstrap";
 import Message from "../Message/Message";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 const Cart=({match, location})=>{
     const productId = match.params.id
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
+    const history =useHistory()
     const dispatch=useDispatch()
     const cart=useSelector(state => state.cart)
     const {cartItems}=cart
@@ -20,7 +21,7 @@ const Cart=({match, location})=>{
         dispatch(RemoveFromCartAction(id))
     }
     const checkoutHandler=()=>{
-
+        history.push('/shippingDetail')
     }
     return(
         <Row>
@@ -32,14 +33,14 @@ const Cart=({match, location})=>{
                     </Message>
                 ) : (
                     <ListGroup variant='flush'>
-                        {cartItems.map(item => (
+                        {cartItems && cartItems.map(item => (
                             <ListGroup.Item key={item.product}>
                                 <Row>
                                     <Col md={2}>
                                         <Image src={item.image} alt={item.name} fluid rounded/>
                                     </Col>
                                     <Col md={3}>
-                                        <Link to={`/product/${item.product}`}>{item.name}</Link>
+                                        <Link to={`/productDetail/${item.product}`}>{item.name}</Link>
                                     </Col>
                                     <Col md={2}>
                                         {item.price} Rs
