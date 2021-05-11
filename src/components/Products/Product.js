@@ -16,8 +16,8 @@ const Product=({product})=>{
                         <strong>{product.name}</strong>
                     </Card.Title>
                 </Link>
-                <Card.Text as='h3'>
-                    Price: {product.price} Rs
+                <Card.Text>
+                     {product.price} Rs
                 </Card.Text>
             </Card.Body>
         </Card>

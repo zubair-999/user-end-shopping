@@ -9,6 +9,7 @@ import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Shipping/Shipping";
 import Payment from "./components/Payment/Payment";
 import PlaceOrder from "./components/PlaceOrder/PlaceOrder";
+import ThankYou from "./components/Thankyou/Thankyou";
 
 const App=()=> {
   return (
@@ -22,6 +23,7 @@ const App=()=> {
                 <Route path="/shippingDetail" exact component={Shipping}/>
                 <Route path="/payment" exact component={Payment}/>
                 <Route path="/placeorder" exact component={PlaceOrder}/>
+                <Route path="/thank-you" exact component={ThankYou}/>
             </Container>
         </main>
         <Footer/>

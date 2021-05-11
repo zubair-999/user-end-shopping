@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "@coreui/icons-react": "^1.1.0",
     "axios": "^0.21.1",
     "react-bootstrap": "^1.5.2",
     "react-redux": "^7.2.3",

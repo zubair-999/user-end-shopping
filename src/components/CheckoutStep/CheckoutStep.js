@@ -7,7 +7,7 @@ const CheckoutSteps = ({ step1, step2, step3 }) => {
         <Nav className='justify-content-center mb-4'>
             <Nav.Item>
                 {step1 ? (
-                    <LinkContainer to='/shipping'>
+                    <LinkContainer to='/shippingDetail'>
                         <Nav.Link>Shipping</Nav.Link>
                     </LinkContainer>
                 ) : (

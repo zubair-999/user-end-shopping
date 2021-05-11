@@ -46,7 +46,7 @@ const PlaceOrder = ({ history }) => {
 
     useEffect(() => {
         if (success) {
-            history.push(`/order/${order._id}`)
+            history.push(`/thank-you`)
             //dispatch({ type: USER_DETAILS_RESET })
             // dispatch({ type: ORDER_CREATE_RESET })
         }
@@ -59,8 +59,6 @@ const PlaceOrder = ({ history }) => {
                 products: backend,
                 contact_info: cart.shippingAddress,
                 payment_mode: cart.paymentMethod,
-                // price: cart.itemsPrice,
-                // delivery_charge: cart.shippingPrice,
                 total_price: cart.totalPrice,
             })
         )
@@ -76,9 +74,8 @@ const PlaceOrder = ({ history }) => {
                             <h2>Shipping</h2>
                             <p>
                                 <strong>Address:</strong>
-                                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
-                                {cart.shippingAddress.phone},{' '}
-                                {cart.shippingAddress.country}
+                                {cart.shippingAddress.address}{' '}
+                                {cart.shippingAddress.phone}
                             </p>
                         </ListGroup.Item>
 
