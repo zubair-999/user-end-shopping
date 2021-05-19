@@ -2,17 +2,33 @@ import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
     PRODUCT_LIST_FAIL,
-    PRODUCT_DETAIL_REQUEST, PRODUCT_DETAIL_SUCCESS, PRODUCT_DETAIL_FAIL
+    PRODUCT_DETAIL_REQUEST,
+    PRODUCT_DETAIL_SUCCESS,
+    PRODUCT_DETAIL_FAIL,
+    PRODUCT_SEARCH_REQUEST,
+    PRODUCT_SEARCH_SUCCESS,
+    PRODUCT_SEARCH_FAIL
 } from "../constants/Constants";
 
 export const ProductReducer = (state={products:[]}, action) => {
-    debugger;
     switch (action.type) {
         case PRODUCT_LIST_REQUEST:
             return { loading: true }
         case PRODUCT_LIST_SUCCESS:
             return { loading: false, products: action.payload }
         case PRODUCT_LIST_FAIL:
+            return { loading: false, error: action.payload }
+        default:
+            return state;
+    }
+};
+export const ProductSearchReducer = (state={searchProducts:[]}, action) => {
+    switch (action.type) {
+        case PRODUCT_SEARCH_REQUEST:
+            return { loading: true }
+        case PRODUCT_SEARCH_SUCCESS:
+            return { loading: false, searchProducts: action.payload }
+        case PRODUCT_SEARCH_FAIL:
             return { loading: false, error: action.payload }
         default:
             return state;

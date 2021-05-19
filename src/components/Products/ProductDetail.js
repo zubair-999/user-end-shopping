@@ -39,7 +39,7 @@ const ProductDetail=({match})=>{
                 Price: {product.price} RS
                 </ListGroup.Item>
                 <ListGroup.Item>
-                Category: {product.category} RS
+                {/*Category: {product.category.name}*/}
                 </ListGroup.Item>
                 <ListGroup.Item>
                 Description: {product.description}

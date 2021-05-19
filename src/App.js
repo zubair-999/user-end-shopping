@@ -10,20 +10,22 @@ import Shipping from "./components/Shipping/Shipping";
 import Payment from "./components/Payment/Payment";
 import PlaceOrder from "./components/PlaceOrder/PlaceOrder";
 import ThankYou from "./components/Thankyou/Thankyou";
+import SearchProducts from "./components/SearchProducts/SearchProducts";
 
 const App=()=> {
   return (
       <Router>
         <Header/>
-        <main className='py-3'>
+        <main style={{marginTop:'100px'}}>
             <Container>
-                <Route path="/" exact component={Products} />
                 <Route path="/productDetail/:id" excat component={ProductDetail}/>
                 <Route path="/cart/:id?" excat component={Cart}/>
                 <Route path="/shippingDetail" exact component={Shipping}/>
                 <Route path="/payment" exact component={Payment}/>
                 <Route path="/placeorder" exact component={PlaceOrder}/>
                 <Route path="/thank-you" exact component={ThankYou}/>
+                <Route path="/search" exact component={SearchProducts} />
+                <Route path="/" exact component={Products} />
             </Container>
         </main>
         <Footer/>
