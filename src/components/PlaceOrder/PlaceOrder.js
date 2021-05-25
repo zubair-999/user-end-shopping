@@ -6,6 +6,7 @@ import Message from '../Message/Message'
 import CheckoutSteps from '../CheckoutStep/CheckoutStep'
 import { createOrder } from '../../redux/actions/OrderAction'
 import { ORDER_CREATE_RESET } from '../../redux/constants/Constants'
+import {ClipLoader} from "react-spinners";
 //import { USER_DETAILS_RESET } from '../../redux/constants/Constants'
 
 const PlaceOrder = ({ history }) => {
@@ -22,7 +23,7 @@ const PlaceOrder = ({ history }) => {
             })
         })
 
-    if (!cart.shippingAddress.address) {
+    if (!cart.shippingAddress.values.address) {
         history.push('/shippingDetail')
     } else if (!cart.paymentMethod) {
         history.push('/payment')
@@ -42,7 +43,7 @@ const PlaceOrder = ({ history }) => {
     ).toFixed(2)
 
     const orderCreate = useSelector((state) => state.orderCreate)
-    const { order, success, error } = orderCreate
+    const { order, success, error, loading } = orderCreate
 
     useEffect(() => {
         if (success) {
@@ -57,7 +58,7 @@ const PlaceOrder = ({ history }) => {
         dispatch(
             createOrder({
                 products: backend,
-                contact_info: cart.shippingAddress,
+                contact_info: cart.shippingAddress.values,
                 payment_mode: cart.paymentMethod,
                 total_price: cart.totalPrice,
             })
@@ -73,9 +74,10 @@ const PlaceOrder = ({ history }) => {
                         <ListGroup.Item>
                             <h2>Shipping</h2>
                             <p>
-                                <strong>Address:</strong>
-                                {cart.shippingAddress.address}{' '}
-                                {cart.shippingAddress.phone}
+                                <strong>Address: </strong>
+                                {cart.shippingAddress.values.address}{' '}
+                                <strong>Phone Number: </strong>
+                                {cart.shippingAddress.values.contact_no}
                             </p>
                         </ListGroup.Item>
 
@@ -94,9 +96,10 @@ const PlaceOrder = ({ history }) => {
                                     {cart.cartItems.map((item, index) => (
                                         <ListGroup.Item key={index}>
                                             <Row>
-                                                <Col md={1}>
+                                                <Col md={2}>
                                                     <Image
-                                                        src={item.image}
+                                                        // src={item.image}
+                                                        src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRED1-LycRSyO8NaqjIwHy8z7KRjgr7ocYWfg&usqp=CAU'
                                                         alt={item.name}
                                                         fluid
                                                         rounded
@@ -146,14 +149,16 @@ const PlaceOrder = ({ history }) => {
                                 {error && <Message variant='danger'>{error}</Message>}
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                <Button
-                                    type='button'
-                                    className='btn-block'
-                                    disabled={cart.cartItems === 0}
-                                    onClick={placeOrderHandler}
-                                >
-                                    Place Order
-                                </Button>
+                                <div className='d-flex justify-content-center'>
+                                    <Button
+                                        type='button'
+                                        className='Button'
+                                        disabled={cart.cartItems === 0}
+                                        onClick={placeOrderHandler}
+                                    >
+                                        {loading ? <ClipLoader size={15} color="#FFFFFF" loading /> : 'Place Order'}
+                                    </Button>
+                                </div>
                             </ListGroup.Item>
                         </ListGroup>
                     </Card>

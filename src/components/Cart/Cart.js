@@ -4,6 +4,7 @@ import {AddToCartAction, RemoveFromCartAction} from "../../redux/actions/CartAct
 import {Button, Card, Col, Form, Image, ListGroup, Row} from "react-bootstrap";
 import Message from "../Message/Message";
 import {Link, useHistory} from "react-router-dom";
+import './Cart.css'
 
 const Cart=({match, location})=>{
     const productId = match.params.id
@@ -32,38 +33,48 @@ const Cart=({match, location})=>{
                         Your cart is empty <Link to='/'>Go Back</Link>
                     </Message>
                 ) : (
-                    <ListGroup variant='flush'>
-                        {cartItems && cartItems.map(item => (
-                            <ListGroup.Item key={item.product}>
-                                <Row>
-                                    <Col md={2}>
-                                        <Image src={item.image} alt={item.name} fluid rounded/>
-                                    </Col>
-                                    <Col md={3}>
-                                        <Link to={`/productDetail/${item.product}`}>{item.name}</Link>
-                                    </Col>
-                                    <Col md={2}>
-                                        {item.price} Rs
-                                    </Col>
-                                    <Col md={2}>
-                                        <Form.Control as='select' value={item.qty} onChange={(e)=>
-                                            dispatch(AddToCartAction(productId, Number(e.target.value)))}>
-                                            {[...Array(item.stock).keys()].map(x=>(
-                                                <option key={x+1} value={x+1}>
-                                                    {x+1}
-                                                </option>
-                                            ))}
-                                        </Form.Control>
-                                    </Col>
-                                    <Col md={2}>
-                                        <Button variant='light' type='button' onClick={() => removeFromCartHandler(item.product)}>
-                                            <i className="fas fa-trash-alt"></i>
-                                        </Button>
-                                    </Col>
-                                </Row>
-                            </ListGroup.Item>
-                        ))}
-                    </ListGroup>
+                    <>
+                            {cartItems && cartItems.map(item => (
+                                <Card className='my-3'>
+                                    <Card.Body key={item.product}>
+                                        <Row>
+                                            <Col md={2}>
+                                                <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRED1-LycRSyO8NaqjIwHy8z7KRjgr7ocYWfg&usqp=CAU' alt={item.name} fluid rounded/>
+                                                {/*<Image src={item.image} alt={item.name} fluid rounded/>*/}
+                                            </Col>
+                                            <Col md={3}>
+                                                <Link to={`/productDetail/${item.product}`}>{item.name}</Link>
+                                            </Col>
+                                            <Col md={2}>
+                                                {item.price} Rs
+                                            </Col>
+                                            <Col md={2}>
+                                                <Form.Control
+                                                    as='select'
+                                                    value={item.qty}
+                                                    onChange={(e) =>
+                                                        dispatch(
+                                                            AddToCartAction(item.product, Number(e.target.value))
+                                                        )
+                                                    }
+                                                >
+                                                    {[...Array(item.stock).keys()].map((x) => (
+                                                        <option key={x + 1} value={x + 1}>
+                                                            {x + 1}
+                                                        </option>
+                                                    ))}
+                                                </Form.Control>
+                                            </Col>
+                                            <Col md={2}>
+                                                <Button variant='white' type='button' onClick={() => removeFromCartHandler(item.product)}>
+                                                        <i className="fas fa-trash-alt Icon"></i>
+                                                </Button>
+                                            </Col>
+                                        </Row>
+                                    </Card.Body>
+                                </Card>
+                            ))}
+                    </>
                 )}
             </Col>
             <Col md={4}>
@@ -76,9 +87,11 @@ const Cart=({match, location})=>{
                             {cartItems.reduce((acc, item) => acc + item.qty * item.price, 0).toFixed(2)} Rs
                         </ListGroup.Item>
                         <ListGroup.Item>
-                            <Button type='button' className='btn-block' disabled={cartItems.length === 0} onClick={checkoutHandler}>
-                                Proceed To Checkout
-                            </Button>
+                            <div className='d-flex justify-content-center'>
+                                <Button type='button' className='Button'  disabled={cartItems.length === 0} onClick={checkoutHandler}>
+                                    Proceed To Checkout
+                                </Button>
+                            </div>
                         </ListGroup.Item>
                     </ListGroup>
                 </Card>

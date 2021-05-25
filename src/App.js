@@ -11,12 +11,13 @@ import Payment from "./components/Payment/Payment";
 import PlaceOrder from "./components/PlaceOrder/PlaceOrder";
 import ThankYou from "./components/Thankyou/Thankyou";
 import SearchProducts from "./components/SearchProducts/SearchProducts";
+import SearchBox from "./components/SearchBox/SearchBox";
 
 const App=()=> {
   return (
       <Router>
         <Header/>
-        <main style={{marginTop:'100px'}}>
+        <main  >
             <Container>
                 <Route path="/productDetail/:id" excat component={ProductDetail}/>
                 <Route path="/cart/:id?" excat component={Cart}/>

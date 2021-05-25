@@ -11,8 +11,8 @@ const Slider=()=> {
         <Carousel fade>
             <Carousel.Item >
                 <img
-                    height='350px'
-                    className="d-block w-100"
+                    height='300px'
+                    className="d-block w-100 "
                     src={Logo}
                     alt="First slide"
                 />
@@ -21,7 +21,7 @@ const Slider=()=> {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    height='350px'
+                    height='300px'
                     className="d-block w-100"
                     src={Pic1}
                     alt="Second slide"
@@ -29,7 +29,7 @@ const Slider=()=> {
             </Carousel.Item>
             <Carousel.Item>
                 <img
-                    height='350px'
+                    height='300px'
                     className="d-block w-100"
                     src={Pic2}
                     alt="Third slide"

@@ -5,6 +5,7 @@ import {Link, useHistory} from "react-router-dom";
 import {Button, Card, Col, Form, Image, ListGroup, Row} from "react-bootstrap";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
+import '../Cart/Cart.css'
 
 const ProductDetail=({match})=>{
     debugger;
@@ -27,10 +28,11 @@ const ProductDetail=({match})=>{
             </Link>
             {loading ? <Loader/> : error ? <Message variant='dander'>{error}</Message> :(
                 <Row>
-                <Col md={6}>
-                <Image src={product.image} alt={product.name} fluid/>
+                <Col md={5}>
+                <Image  width='400px' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRED1-LycRSyO8NaqjIwHy8z7KRjgr7ocYWfg&usqp=CAU' alt={product.name} fluid/>
+                {/*<Image src={product.image} alt={product.name} fluid/>*/}
                 </Col>
-                <Col md={3}>
+                <Col md={4}>
                 <ListGroup variant='flush'>
                 <ListGroup.Item>
                 <h3>{product.name}</h3>
@@ -89,9 +91,11 @@ const ProductDetail=({match})=>{
                 </ListGroup.Item>
                 )}
                 <ListGroup.Item>
-                <Button onClick={addToCartHandler} className='btn-block' type='button' disabled={product.stock === 0}>
-                Add To Cart
-                </Button>
+                    <div style={{textAlign:'center'}}>
+                        <Button onClick={addToCartHandler} className='Button' type='button' disabled={product.stock === 0}>
+                            Add To Cart
+                        </Button>
+                    </div>
                 </ListGroup.Item>
                 </ListGroup>
                 </Card>

@@ -6,6 +6,8 @@ import Product from "./Product";
 import Loader from "../Loader/Loader";
 import Message from "../Message/Message";
 import Slider from "../Carousel/Carousel";
+import {Route} from "react-router-dom";
+import SearchBox from "../SearchBox/SearchBox";
 
 const Products=()=>{
     const dispatch=useDispatch()
@@ -16,6 +18,7 @@ const Products=()=>{
     const {products, loading, error}=productList
     return(
         <>
+            <Route render={({history}) => <SearchBox history={history}/>}/>
             <Slider/>
             <h1>Product</h1>
             {loading ? (

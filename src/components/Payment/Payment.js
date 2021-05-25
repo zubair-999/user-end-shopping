@@ -9,7 +9,7 @@ const Payment = ({ history }) => {
     const cart = useSelector((state) => state.cart)
     const { shippingAddress } = cart
 
-    if (!shippingAddress.address) {
+    if (!shippingAddress.values.address) {
         history.push('/shippingDetail')
     }
 
@@ -43,7 +43,7 @@ const Payment = ({ history }) => {
                     </Col>
                 </Form.Group>
 
-                <Button type='submit' variant='primary'>
+                <Button type='submit' className='Button'>
                     Continue
                 </Button>
             </Form>
